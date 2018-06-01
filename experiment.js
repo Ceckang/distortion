@@ -1,24 +1,5 @@
-"use strict!"
-/* function loadJson(path, element){
-    fetch(path)
-       .then(function(response){
-           return response.text();
-       })
-       .then(function(data){
-           console.log(document.querySelector(element))         
+"use strict";
 
-           document.querySelector(element).innerHTML = data;
-           //document.querySelector("#recieve").appendChild(document.querySelector("template").content.cloneNode(true));
-       })
-}
-loadJson("https://kea-alt-del.dk/kata-distortion/", "template")
-
-
-setInterval(function(){ 
-    loadScript();    
-}, 10000); */
-
-let myVar = setInterval(myTimer, 1000);
 document.addEventListener("DOMContentLoaded",loadScript);
 
 async function loadScript(){
@@ -27,65 +8,64 @@ async function loadScript(){
         let mitJson = await jsonObject.json();
 
         console.log(mitJson);
-
-
         
+       /*  const newDiv = document.createElement("div");
+        console.log(newDiv);
+        console.log(mitJson.id);
+        
+       const idDiv = newDiv.setAttribute(mitJson.id);
+       console.log(idDiv);
+        */
+       //addElement();
+
+    // create a new div element 
+    let newDivId = document.createElement("div"); 
+    // and give it some content 
+    let newContentId = document.createTextNode("id: "+mitJson.id);
+
+    let newDivQueue = document.createElement("div"); 
+    let newContentQueue = document.createTextNode("inQueue: "+mitJson.inQueue);
+
+    let newDivLog = document.createElement("div"); 
+    let newContentLog = document.createTextNode("LoggedAt: "+mitJson.loggedAt);
+    
+    // add the text node to the newly created div    
+    newDivId.appendChild(newContentId);  
+    newDivQueue.appendChild(newContentQueue);
+    newDivLog.appendChild(newContentLog); 
+     
+    // add the newly created element and its content into the DOM     
+    document.body.appendChild(newDivId)
+    document.body.appendChild(newDivQueue)
+    document.body.appendChild(newDivLog)
+    
+    
+    //var currentDiv = document.getElementById("div1"); 
+    //document.body.insertBefore(newDiv, currentDiv); 
+       
 };
+
+/* function addElement () { 
+    // create a new div element 
+    var newDiv = document.createElement("div"); 
+    // and give it some content 
+    var newContent = document.createTextNode("Hi there and greetings!"); 
+    // add the text node to the newly created div
+    newDiv.appendChild(newContent);  
+  
+    // add the newly created element and its content into the DOM 
+    var currentDiv = document.getElementById("div1"); 
+    document.body.insertBefore(newDiv, currentDiv); 
+  } */
+
+
+
 function addDiv(){
-loadScript();
-const mydiv = document.createElement("div");   
-document.body.appendChild(mydiv);
+    //funktion der tilføjer en ny div til hvert json objekt
 
 }
+setInterval(function(){ 
+    loadScript();    
+}, 10000);
 
-
-function myTimer() {
-
-    
-    for(let i=0; i<25; i++){
-        const mydiv = document.createElement("div");   
-       //app.appendChild(mydiv);
-       document.body.appendChild(mydiv);
-}
-}
-
-function clearIntervalFunction() {
-    clearInterval(myVar);}
-
-
-
-//setInterval(function(){ 
-    //const app = document.createElement("div");
-   // console.log("app", app);
-   // app.setAttribute("id", "app");
-/*     for(let i=0; i<25; i++){
-         const mydiv = document.createElement("div");
-
-          
-    
-        //app.appendChild(mydiv);
-        document.body.appendChild(mydiv);
-} */
-//}, 10000);
-
-
-
-
-/* const app = document.createElement("div");
-console.log("app", app);
-app.setAttribute("id", "app");
-for(let i=0; i<25; i++){
-     const mydiv = document.createElement("div");
-    // document.querySelector("#app").appendChild(mydiv);
-    app.appendChild(mydiv);
-}
-document.body.appendChild(app); */
-
-/* const divs = document.querySelectorAll("#app div");
-divs.forEach(function(div){
-    //div.style.transform = `translate(50vw, 50vh)`;
-div.addEventListener("mouseenter", function(){
-    div.style.transform = `translate(${Math.random()*100}vw, ${Math.random()*100}vh)`;
-    div.style.backgroundColor = `hsl(${Math.random()*1360}, ${Math.random()*100}%, 50%)`;
-})
-}) */
+//interval.forEach(function(div){
