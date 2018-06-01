@@ -1,4 +1,5 @@
 "use strict";
+// used this awesome article: https://www.hongkiat.com/blog/svg-meter-gauge-tutorial/
 document.addEventListener("DOMContentLoaded",loadScript);
 
 async function loadScript(){
@@ -27,18 +28,12 @@ let cf = 2 * Math.PI * r;
 let semi_cf = cf / 2;
 let semi_cf_1by3 = semi_cf / 3;
 let semi_cf_2by3 = semi_cf_1by3 * 2;
-document.querySelector("#outline_curves")
-.setAttribute("stroke-dasharray", semi_cf + "," + cf);
-document.querySelector("#low")
-.setAttribute("stroke-dasharray", semi_cf + "," + cf);
-document.querySelector("#avg")
-.setAttribute("stroke-dasharray", semi_cf_2by3 + "," + cf);
-document.querySelector("#high")
-.setAttribute("stroke-dasharray", semi_cf_1by3 + "," + cf);
-document.querySelector("#outline_ends")
-.setAttribute("stroke-dasharray", 2 + "," + (semi_cf - 2));
-document.querySelector("#mask")
-.setAttribute("stroke-dasharray", semi_cf + "," + cf);
+document.querySelector("#outline_curves").setAttribute("stroke-dasharray", semi_cf + "," + cf);
+document.querySelector("#low").setAttribute("stroke-dasharray", semi_cf + "," + cf);
+document.querySelector("#avg").setAttribute("stroke-dasharray", semi_cf_2by3 + "," + cf);
+document.querySelector("#high").setAttribute("stroke-dasharray", semi_cf_1by3 + "," + cf);
+document.querySelector("#outline_ends").setAttribute("stroke-dasharray", 2 + "," + (semi_cf - 2));
+document.querySelector("#mask").setAttribute("stroke-dasharray", semi_cf + "," + cf);
 
 /* Bind range slider event*/
 //let slider = document.querySelector("#slider");
@@ -54,8 +49,8 @@ function range_change_event() {
 let meter_value = semi_cf - ((queue * semi_cf) / 25);
 mask.setAttribute("stroke-dasharray", meter_value + "," + cf);
 meter_needle.style.transform = "rotate(" + 
-    (270 + ((queue * 180) / 100)) + "deg)";
-lbl.textContent = "# in Q: " + queue;
+    (270 + ((queue * 180) / 25)) + "deg)";
+lbl.textContent = "In Q for beer: " + queue;
 }
 //slider.addEventListener("input", range_change_event);
 
@@ -63,4 +58,4 @@ range_change_event();
 }
 setInterval(function(){ 
     loadScript();    
-}, 10000);
+}, 2500);
